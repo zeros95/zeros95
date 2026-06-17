@@ -1,6 +1,10 @@
 
 # 这是我的博客，用于记录我的生活、学习的点点滴滴。
 
+![头像](/images/photo.png)
+
+---
+
 ## 1、博客地址：https://morningligt.github.io
 
 ---
