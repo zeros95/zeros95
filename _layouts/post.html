@@ -1,0 +1,50 @@
+---
+layout: default
+---
+
+<article class="post">
+  <h1>{{ page.title }}</h1>
+  <div class="post-meta">
+    <time datetime="{{ page.date | date_to_xmlschema }}">
+      {{ page.date | date: "%Y年%m月%d日" }}
+    </time>
+    {% if page.categories %}
+      | 分类：{{ page.categories | join: "、" }}
+    {% endif %}
+  </div>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <!-- 上一篇 / 下一篇导航 -->
+  <div class="post-navigation">
+    {% if page.previous %}
+      <div class="prev">
+        ← <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
+      </div>
+    {% endif %}
+    {% if page.next %}
+      <div class="next">
+        <a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a> →
+      </div>
+    {% endif %}
+  </div>
+</article>
+
+<style>
+  .post-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid #eaecef;
+  }
+  .post-navigation .prev,
+  .post-navigation .next {
+    max-width: 45%;
+  }
+  .post-navigation .next {
+    text-align: right;
+  }
+</style>
