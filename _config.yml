@@ -15,3 +15,9 @@ permalink: /:year/:month/:day/:title/
 # ====== 文章显示设置 ======
 show_excerpts: true
 
+# 顶部导航菜单
+header_pages:
+  - index.md        # 首页（默认就有）
+  - about.md        # 关于我
+  # - categories.md  # 如果你想加分类页，取消注释并创建对应文件
+
