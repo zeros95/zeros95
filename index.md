@@ -3,20 +3,13 @@ layout: default
 title: 首页
 ---
 
-<div class="posts">
+<ul>
   {% for post in site.posts %}
-    <article class="post">
-      <h2>
-        <a href="{{ post.url | relative_url }}">
-          {{ post.title }}
-        </a>
-      </h2>
-      <div class="post-meta">
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+      <span style="color:#666; font-size:14px; margin-left:10px;">
         {{ post.date | date: "%Y年%m月%d日" }}
-      </div>
-      <div class="post-excerpt">
-        {{ post.excerpt }}
-      </div>
-    </article>
+      </span>
+    </li>
   {% endfor %}
-</div>
+</ul>
