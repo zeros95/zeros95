@@ -19,5 +19,6 @@ show_excerpts: true
 header_pages:
   - index.md        # 首页（默认就有）
   - about.md        # 关于我
+  - categories.md  # 分类
   # - categories.md  # 如果你想加分类页，取消注释并创建对应文件
 
