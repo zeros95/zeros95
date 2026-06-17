@@ -19,7 +19,8 @@ show_excerpts: true
 # 顶部导航菜单
 header_pages:
   - index.md     
-  - about.md      
+  - about.md
+  - archive.md
   - categories.md
   - tags.md
 
