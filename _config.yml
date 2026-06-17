@@ -11,3 +11,6 @@ permalink: /:year/:month/:day/:title/
 
 # ====== 文章显示设置 ======
 show_excerpts: true
+
+# ====== 时间时区设置 ======
+timezone: Asia/Shanghai
