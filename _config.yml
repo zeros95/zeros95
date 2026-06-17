@@ -21,4 +21,5 @@ header_pages:
   - index.md     
   - about.md      
   - categories.md
+  - tags.md
 
