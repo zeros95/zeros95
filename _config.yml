@@ -1,1 +1,13 @@
+# ====== 网站基础信息 ======
+title: 我的个人博客
+description: 记录生活，分享思考
+url: "https://morningligt.github.io"
+
+# ====== 主题设置 ======
 theme: jekyll-theme-cayman
+
+# ====== 文章链接格式（缺了这行，文章就显示不出来） ======
+permalink: /:year/:month/:day/:title/
+
+# ====== 文章显示设置 ======
+show_excerpts: true
