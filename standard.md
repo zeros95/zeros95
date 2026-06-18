@@ -25,7 +25,10 @@
 - Minima主题
 - 导航模板
 - Markdown
-- Git
+- Mermaid
+- github
+- git分支
+- git
 - VBA
 - Python
 - RPA
@@ -36,6 +39,7 @@
 - 数据分析
 - 阅读书单
 - AI
+
 
 ---
 
