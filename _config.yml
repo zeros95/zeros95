@@ -23,3 +23,5 @@ header_pages:
   - archive.md
   - categories.md
   - tags.md
+# 排查指定文件夹
+exclude: [templates]
