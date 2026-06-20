@@ -16,12 +16,15 @@ permalink: /:year/:month/:day/:title/
 # ====== 文章显示设置 ======
 show_excerpts: true
 
-# 顶部导航菜单
+# ====== 顶部导航菜单（排最后 = 最右边） ======
 header_pages:
   - index.md     
   - about.md
   - archive.md
   - categories.md
   - tags.md
-# 排查指定文件夹
-exclude: [templates]
+  - nav.md
+
+# ====== 构建配置 ======
+exclude:
+  - templates
