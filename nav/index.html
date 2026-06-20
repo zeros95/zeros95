@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>导航</title>
+<title>资源导航</title>
 <script src="lib/tailwind.min.js"></script>
 <link rel="stylesheet" href="lib/fontawesome/css/all.min.css">
 <style>
@@ -171,7 +171,7 @@ a { color: var(--accent); text-decoration: none; }
 
 /* ===== 首页 ===== */
 #homeView {
-  max-width: 720px; margin: 32px auto 60px; padding: 32px 28px 40px;
+  max-width: 720px; margin: 64px auto 60px; padding: 32px 28px 40px;
   position: relative;
   border-radius: 24px;
   background: var(--card-bg);
@@ -327,7 +327,7 @@ a { color: var(--accent); text-decoration: none; }
 .fav-card .fc-name { font-weight: 600; font-size: 13px; color: var(--text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
 .fav-card .fc-name-tooltip {
   position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
-  background: var(--accent); color: #fff; font-size: 12px; padding: 4px 8px;
+  background: transparent; color: var(--text-tertiary); font-size: 12px; padding: 4px 8px;
   border-radius: 6px; white-space: nowrap; max-width: 200px;
   opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10;
 }
@@ -358,6 +358,8 @@ a { color: var(--accent); text-decoration: none; }
 #browseView { display: none; }
 body.browse-mode #browseView { display: flex; height: calc(100vh - 48px); }
 body.browse-mode #homeView { display: none; }
+body.browse-mode #marqueeReminder { display: none; }
+body:not(.browse-mode) #marqueeReminder { display: block; }
 
 /* 侧边栏 */
 #sidebar {
@@ -457,7 +459,7 @@ body.browse-mode #sidebar { width: 220px; }
 }
 .link-row:hover { background: var(--bg-secondary); }
 .link-row .link-checkbox { width: 16px; height: 16px; cursor: pointer; accent-color: var(--accent); flex-shrink: 0; }
-.link-row .link-name { font-weight: 500; color: var(--text-primary); cursor: pointer; min-width: 120px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.link-row .link-name { font-weight: 500; color: var(--text-primary); cursor: pointer; min-width: 240px; max-width: 400px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .link-row .link-name:hover { color: var(--accent); }
 .link-row .link-url { font-size: 12px; color: var(--accent); flex: 1; max-width: 280px; min-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .link-row .link-note { font-size: 12px; color: var(--text-tertiary); margin-left: 12px; padding: 0; background: transparent; border-radius: 0; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex-shrink: 1; }
@@ -662,7 +664,7 @@ body.browse-mode #sidebar { width: 220px; }
 .link-card-name { font-weight: 500; font-size: 13px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .link-card-note-tooltip {
   position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
-  background: var(--accent); color: #fff; font-size: 12px; padding: 4px 8px;
+  background: transparent; color: var(--text-tertiary); font-size: 12px; padding: 4px 8px;
   border-radius: 6px; white-space: nowrap; max-width: 200px; overflow: hidden; text-overflow: ellipsis;
   opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10;
 }
@@ -777,6 +779,9 @@ body.browse-mode #sidebar { width: 220px; }
 
 /* ===== 动效 ===== */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes marquee { 0% { transform: translateX(-100%); } 100% { transform: translateX(100vw); } }
+.marquee-scroll { animation: marquee 30s linear infinite; text-align: left; white-space: nowrap; display: inline-block; }
+.marquee-static { animation: none; text-align: center; display: inline-block; width: 100%; }
 @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes floatCircle {
   0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
@@ -800,7 +805,7 @@ body.browse-mode #sidebar { width: 220px; }
 <header id="topbar">
   <div class="left">
     <button class="top-btn" id="btnToggleSidebar" title="切换浏览模式"><i class="fas fa-bars"></i></button>
-    <span class="title">导航</span>
+    <span class="title">资源导航</span>
     <span id="storageWarning" style="display:none;font-size:12px;color:var(--warning);margin-left:8px"><i class="fas fa-exclamation-triangle" style="margin-right:4px"></i>数据不会保存</span>
   </div>
   <div class="right">
@@ -812,6 +817,13 @@ body.browse-mode #sidebar { width: 220px; }
     <button class="top-btn" id="btnSettings" title="设置"><i class="fas fa-gear"></i></button>
   </div>
 </header>
+
+<!-- 走马灯提醒（首页显示） -->
+<div id="marqueeReminder" style="position:fixed;top:52px;left:0;right:0;height:32px;background:var(--bg-secondary);border-bottom:1px solid var(--border-color);overflow:hidden;z-index:90;">
+  <div id="marqueeContent" class="marquee-static" style="display:inline-block;width:100%;color:var(--text-secondary);font-size:13px;line-height:32px;text-align:center;">
+    <i class="fas fa-quote-left" style="color:var(--accent);margin-right:6px"></i>每天进步一点点，坚持就是胜利。
+  </div>
+</div>
 
 <!-- ===== 首页 ===== -->
 <div id="homeView">
@@ -910,6 +922,10 @@ body.browse-mode #sidebar { width: 220px; }
       <input id="greetingInput" type="text" placeholder="首页显示的招呼语">
     </div>
     <div class="modal-field">
+      <label>座右铭</label>
+      <input id="mottoInput" type="text" placeholder="首页居中显示的座右铭" maxlength="50">
+    </div>
+    <div class="modal-field">
       <label>链接打开方式</label>
       <select id="openModeSelect">
         <option value="blank">新标签页</option>
@@ -926,10 +942,17 @@ body.browse-mode #sidebar { width: 220px; }
 
     <div class="modal-field">
       <label>数据管理</label>
-      <div style="display:flex;gap:8px;margin-top:4px">
-        <button class="btn btn-outline btn-sm" id="btnExport"><i class="fas fa-download" style="margin-right:4px"></i>导出</button>
-        <button class="btn btn-outline btn-sm" id="btnImport"><i class="fas fa-upload" style="margin-right:4px"></i>导入</button>
-        <input type="file" id="importFile" accept=".json" style="display:none">
+      <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;position:relative">
+        <button class="btn btn-outline btn-sm" id="btnExport"><i class="fas fa-download" style="margin-right:4px"></i>导出JSON</button>
+        <button class="btn btn-outline btn-sm" id="btnImportJSON"><i class="fas fa-upload" style="margin-right:4px"></i>导入JSON</button>
+        <button class="btn btn-outline btn-sm" id="btnImportHTML"><i class="fas fa-bookmark" style="margin-right:4px"></i>导入书签</button>
+        <input type="file" id="importFileJSON" accept=".json" style="display:none">
+        <input type="file" id="importFileHTML" accept=".html" style="display:none">
+      </div>
+      <div style="margin-top:8px;padding:8px 12px;background:var(--bg-secondary);border-radius:6px;font-size:12px;color:var(--text-secondary)">
+        <b style="color:var(--accent)">迁移教程：</b><br>
+        ① 本工具迁移：导出JSON → 新设备导入JSON<br>
+        ② 浏览器书签：导出书签HTML → 导入书签
       </div>
     </div>
     <div class="modal-field">
@@ -964,7 +987,7 @@ body.browse-mode #sidebar { width: 220px; }
             <span id="editIconSelectedName" style="font-weight:500"></span>
           </div>
         </div>
-        <select id="editCatIcon" style="display:none"></select>
+        <input id="editCatIcon" type="hidden">
       </div>
       <div style="flex:1;display:flex;flex-direction:column">
         <label style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;display:block">选择图标</label>
@@ -1107,9 +1130,18 @@ body.browse-mode #sidebar { width: 220px; }
       <div style="margin-bottom:16px">
         <div style="font-weight:600;color:var(--accent);margin-bottom:8px"><i class="fas fa-database" style="margin-right:4px"></i>数据管理</div>
         <div style="color:var(--text-secondary);padding-left:16px">
-          • 导出数据：保存为 JSON 文件备份<br>
-          • 导入数据：从 JSON 文件恢复<br>
+          • 导出JSON：保存当前数据为JSON文件<br>
+          • 导入JSON：从JSON文件恢复数据<br>
+          • 导入书签：支持Chrome/Edge/Firefox书签HTML<br>
           • 建议定期导出备份
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="font-weight:600;color:var(--accent);margin-bottom:8px"><i class="fas fa-exchange-alt" style="margin-right:4px"></i>数据迁移</div>
+        <div style="color:var(--text-secondary);padding-left:16px">
+          • 本工具迁移：导出JSON → 新设备导入JSON<br>
+          • 浏览器书签：导出书签HTML → 导入书签<br>
+          • 新设备迁移：打包文件夹 → 复制 → 导入数据
         </div>
       </div>
       <div style="margin-bottom:8px">
@@ -1201,7 +1233,7 @@ const DEFAULT_TREE = [
 // ============================================================
 let treeData = [];
 let favorites = [];
-let config = { theme: 'light', openMode: 'blank', greeting: '你好，小不溜' };
+let config = { theme: 'light', openMode: 'blank', greeting: '你好，小不溜', motto: '每天进步一点点，坚持就是胜利。' };
 let selectedCatId = null;
 let linkModalMode = null; // 'add' | { catId, idx }
 let moveTargetId = null;
@@ -1419,7 +1451,7 @@ function loadData() {
   }
   treeData = t ? JSON.parse(t) : JSON.parse(JSON.stringify(DEFAULT_TREE));
   favorites = f ? JSON.parse(f) : [];
-  config = c ? JSON.parse(c) : { theme: 'light', openMode: 'blank' };
+  config = c ? JSON.parse(c) : { theme: 'light', openMode: 'blank', greeting: '你好，小不溜', motto: '每天进步一点点，坚持就是胜利。' };
 }
 
 // ============================================================
@@ -2704,6 +2736,7 @@ function confirmMove() {
 // ============================================================
 function openSettings() {
   document.getElementById('greetingInput').value = config.greeting || '';
+  document.getElementById('mottoInput').value = config.motto || '每天进步一点点，坚持就是胜利。';
   document.getElementById('openModeSelect').value = config.openMode;
   document.querySelectorAll('.theme-btn').forEach(b => {
     const isActive = b.dataset.theme === config.theme;
@@ -2715,8 +2748,10 @@ function openSettings() {
 
 function closeSettings() {
   config.greeting = document.getElementById('greetingInput').value.trim() || '你好，小不溜';
+  config.motto = document.getElementById('mottoInput').value.trim() || '每天进步一点点，坚持就是胜利。';
   saveData();
   renderGreeting();
+  showMotto();
   document.getElementById('settingsModal').style.display = 'none';
 }
 
@@ -2841,11 +2876,67 @@ function exportData() {
   URL.revokeObjectURL(url);
 }
 
-function importData() {
-  document.getElementById('importFile').click();
+// 解析浏览器书签HTML文件
+function parseBookmarkHTML(html) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+
+  function parseFolder(dlElement, depth) {
+    const children = [];
+    const links = [];
+
+    const items = dlElement.querySelectorAll(':scope > DT');
+    for (const dt of items) {
+      const h3 = dt.querySelector(':scope > H3');
+      if (h3) {
+        // 这是一个文件夹
+        const folderName = h3.textContent.trim();
+        const subDl = dt.querySelector(':scope > DL');
+        if (subDl && depth < 3) {
+          const result = parseFolder(subDl, depth + 1);
+          children.push({
+            id: genId(),
+            name: folderName,
+            icon: 'fa-folder',
+            children: result.children,
+            links: result.links
+          });
+        } else if (depth >= 3) {
+          // 超过三级，将子链接合并到当前分类
+          const subDl = dt.querySelector(':scope > DL');
+          if (subDl) {
+            const result = parseFolder(subDl, depth + 1);
+            links.push(...result.links);
+          }
+        }
+      } else {
+        // 这是一个链接
+        const a = dt.querySelector(':scope > A');
+        if (a) {
+          let url = a.href;
+          // 去掉 http:// 或 https:// 前缀
+          url = url.replace(/^https?:\/\//i, '');
+          links.push({
+            name: a.textContent.trim(),
+            url: url,
+            note: ''
+          });
+        }
+      }
+    }
+
+    return { children, links };
+  }
+
+  const rootDl = doc.querySelector('DL');
+  if (!rootDl) return null;
+
+  const result = parseFolder(rootDl, 0);
+  return result.children;
 }
 
-function handleImportFile(e) {
+// 导入JSON数据
+function handleImportJSON(e) {
   const file = e.target.files[0];
   if (!file) return;
   const reader = new FileReader();
@@ -2856,15 +2947,46 @@ function handleImportFile(e) {
       if (!confirm('导入将覆盖现有数据，确定继续？')) return;
       treeData = data.tree;
       favorites = data.favorites || [];
-      config = data.config || { theme: 'light', openMode: 'blank' };
+      config = data.config || { theme: 'light', openMode: 'blank', greeting: '你好，小不溜', motto: '每天进步一点点，坚持就是胜利。' };
+      if (!config.motto) config.motto = '每天进步一点点，坚持就是胜利。';
       saveData();
       applyTheme(config.theme);
       selectedCatId = null;
       checkedLinks = [];
       renderAll();
-      alert('导入成功！');
+      showMotto();
+      alert('JSON导入成功！');
     } catch (err) {
-      alert('导入失败：文件格式不正确');
+      alert('导入失败：JSON文件格式不正确');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+// 导入浏览器书签HTML
+function handleImportHTML(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    const content = ev.target.result;
+    try {
+      const parsedTree = parseBookmarkHTML(content);
+      if (!parsedTree || parsedTree.length === 0) {
+        alert('导入失败：无法解析书签文件');
+        return;
+      }
+      if (!confirm('导入将覆盖现有数据，确定继续？')) return;
+      treeData = parsedTree;
+      favorites = [];
+      saveData();
+      selectedCatId = null;
+      checkedLinks = [];
+      renderAll();
+      alert('书签导入成功！共导入 ' + countAllLinks(treeData) + ' 条链接');
+    } catch (err) {
+      alert('导入失败：书签文件解析错误');
     }
   };
   reader.readAsText(file);
@@ -2891,6 +3013,43 @@ function toggleBrowseMode() {
 function renderGreeting() {
   const el = document.getElementById('greeting');
   el.innerHTML = `<i class="fas fa-hand-wave" style="color:#F5A623;margin-right:6px"></i>${escapeHtml(config.greeting || '你好，小不溜')}`;
+}
+
+// 座右铭与提醒切换
+let mottoTimer = null;
+let showingReminder = false;
+
+function showMotto() {
+  showingReminder = false;
+  const el = document.getElementById('marqueeContent');
+  const text = config.motto || '每天进步一点点，坚持就是胜利。';
+  el.innerHTML = `<i class="fas fa-quote-left" style="color:var(--accent);margin-right:6px"></i>${escapeHtml(text)}`;
+  el.classList.remove('marquee-scroll');
+  el.classList.add('marquee-static');
+}
+
+function showReminder() {
+  showingReminder = true;
+  const el = document.getElementById('marqueeContent');
+  el.innerHTML = `<i class="fas fa-exclamation-circle" style="color:var(--accent);margin-right:6px"></i>建议点击右边设置，定期导出数据备份。`;
+  el.classList.remove('marquee-static');
+  el.classList.add('marquee-scroll');
+}
+
+function startMottoCycle() {
+  // 显示座右铭（居中常驻）
+  showMotto();
+  // 60秒后进入循环周期
+  mottoTimer = setTimeout(function cycle() {
+    // 显示提醒（滚动90秒=3次）
+    showReminder();
+    // 90秒后恢复座右铭
+    setTimeout(function() {
+      showMotto();
+      // 座右铭显示60秒后再次显示提醒
+      mottoTimer = setTimeout(cycle, 60000);
+    }, 90000);
+  }, 60000);
 }
 
 function renderAll() {
@@ -3006,8 +3165,14 @@ function init() {
   document.getElementById('btnSettingsClose').addEventListener('click', closeSettings);
   document.getElementById('settingsModal').addEventListener('click', function(e) { if (e.target === this) closeSettings(); });
   document.getElementById('btnExport').addEventListener('click', exportData);
-  document.getElementById('btnImport').addEventListener('click', importData);
-  document.getElementById('importFile').addEventListener('change', handleImportFile);
+  document.getElementById('btnImportJSON').addEventListener('click', function() {
+    document.getElementById('importFileJSON').click();
+  });
+  document.getElementById('importFileJSON').addEventListener('change', handleImportJSON);
+  document.getElementById('btnImportHTML').addEventListener('click', function() {
+    document.getElementById('importFileHTML').click();
+  });
+  document.getElementById('importFileHTML').addEventListener('change', handleImportHTML);
   document.getElementById('openModeSelect').addEventListener('change', function() {
     config.openMode = this.value;
     saveData();
@@ -3065,6 +3230,7 @@ function init() {
   // 初始渲染
   renderAll();
   setupHomeSearch();
+  startMottoCycle();
 
   // 响应式：移动端侧边栏（已在上面的 btnToggleSidebar click 事件中处理）
 
