@@ -15,6 +15,7 @@
 | :--- | :--- |
 | `_posts/` | 所有文章放这里（`YYYY-MM-DD-标题.md`） |
 | `images/` | 博文配图 |
+| `nav/` | 导航页（资源导航，浏览器收藏夹管理工具） |
 | `_layouts/` | 页面布局模板（一般不用动） |
 | `_config.yml` | 博客配置文件（标题、主题、导航等） |
 | `index.md` | 首页 |
@@ -22,6 +23,7 @@
 | `categories.md` | 分类页 |
 | `tags.md` | 标签页 |
 | `archive.md` | 归档页 |
+| `nav.md` | 导航页入口（导航栏最后一项） |
 | `standard.md` | 写作规范，比如标签、分类的枚举值 |
 
 ---
@@ -43,8 +45,23 @@
  
 3. 推送：
    ```bash
-   git pull
-   git add .
-   git commit -m "新增：标题"
+   # 阅读版：
+   # 1. 先查看改了哪些文件
+   git status
+   git diff --stat
+
+   # 2. 暂存改动（根据情况选择）
+   #    - 全部改动（新增+修改+删除）：git add -A
+   #    - 仅当前目录的修改（不处理上级）：git add .
+   #    - 仅指定文件：git add 文件名.md
+   git add -A
+
+   # 3. 提交
+
+   # 3. 提交
+   git commit -m "类型: 改动描述"
+
+   # 4. 推送（如被拒绝，先 pull --rebase）
    git push
+   # 若报错：git pull --rebase && git push
    ```
