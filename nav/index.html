@@ -1165,65 +1165,70 @@ const DEFAULT_TREE = [
   {
     id: 'g1', name: '工作专业', icon: 'fa-briefcase', children: [
       {
-        id: 'g1a', name: '会计准则条文', icon: 'fa-clipboard-list', children: [
-          { id: 'g1a1', name: '收入确认', icon: 'fa-file-lines', children: [], links: [
-            { name: '财政部会计准则委员会', url: 'casc.gov.cn' },
-            { name: 'CAS 14 收入', url: 'kjs.mof.gov.cn/cas14' }
-          ]},
-          { id: 'g1a2', name: '租赁准则', icon: 'fa-file-lines', children: [], links: [
-            { name: 'CAS 21 租赁', url: 'kjs.mof.gov.cn/cas21' }
-          ]}
-        ], links: []
-      },
-      {
-        id: 'g1b', name: '税务法规条文', icon: 'fa-clipboard-list', children: [], links: [
-          { name: '国家税务总局', url: 'chinatax.gov.cn' },
-          { name: '增值税条例', url: 'chinatax.gov.cn/vat' }
+        id: 'g1a', name: '会计准则', icon: 'fa-wallet', children: [], links: [
+          { name: '财政部', url: 'm.mof.gov.cn/index.htm', note: '' }
         ]
       },
       {
-        id: 'g1c', name: '行业监管', icon: 'fa-clipboard-list', children: [], links: [
-          { name: '证监会', url: 'csrc.gov.cn' },
-          { name: '财政部', url: 'mof.gov.cn' }
+        id: 'g1b', name: '税务相关', icon: 'fa-coins', children: [], links: [
+          { name: '国家税务总局', url: 'www.chinatax.gov.cn/', note: '' },
+          { name: '国税局全国增值税发票查验平台', url: 'inv-veri.chinatax.gov.cn/fpcygzfw/national-invoice-check', note: '' }
+        ]
+      },
+      {
+        id: 'g1c', name: '行业监管', icon: 'fa-landmark', children: [], links: [
+          { name: '证监会', url: 'www.csrc.gov.cn/', note: '' }
         ]
       }
     ], links: []
   },
   {
-    id: 'g2', name: '工具箱', icon: 'fa-toolbox', children: [
-      { id: 'g2a', name: 'AI 工具', icon: 'fa-robot', children: [], links: [
-        { name: 'ChatGPT', url: 'chat.openai.com' },
-        { name: 'Claude', url: 'claude.ai' }
-      ]},
-      { id: 'g2b', name: 'Python 资源', icon: 'fa-code', children: [], links: [
-        { name: 'Python 官方文档', url: 'docs.python.org' }
-      ]},
-      { id: 'g2c', name: '数据分析', icon: 'fa-chart-bar', children: [], links: [
-        { name: 'Pandas 文档', url: 'pandas.pydata.org' }
-      ]}
+    id: 'g2', name: '工具箱', icon: 'fa-cog', children: [
+      {
+        id: 'g2a', name: 'AI 工具', icon: 'fa-microchip', children: [], links: [
+          { name: '茶瓜子的休闲馆', url: 'www.cgzcpa.com/home', note: '' },
+          { name: 'DeepSeek', url: 'www.deepseek.com/', note: '' },
+          { name: '通义千问', url: 'www.qianwen.com/', note: '' }
+        ]
+      },
+      {
+        id: 'g2b', name: 'Python 资源', icon: 'fa-code', children: [], links: [
+          { name: 'Python 官方文档', url: 'docs.python.org', note: '' }
+        ]
+      },
+      {
+        id: 'g2c', name: '数据分析', icon: 'fa-chart-bar', children: [], links: [
+          { name: 'Pandas 文档', url: 'pandas.pydata.org', note: '' }
+        ]
+      }
     ], links: []
   },
   {
     id: 'g3', name: '法律', icon: 'fa-scale-balanced', children: [
-      { id: 'g3a', name: '法规库', icon: 'fa-scroll', children: [], links: [
-        { name: '国家法律法规数据库', url: 'flk.npc.gov.cn' }
-      ]},
-      { id: 'g3b', name: '生活法律', icon: 'fa-house', children: [], links: [
-        { name: '中国裁判文书网', url: 'wenshu.court.gov.cn' }
-      ]}
+      {
+        id: 'g3a', name: '法规库', icon: 'fa-scroll', children: [], links: [
+          { name: '国家法律法规数据库', url: 'flk.npc.gov.cn', note: '' },
+          { name: '中国裁判文书网', url: 'wenshu.court.gov.cn', note: '' }
+        ]
+      },
+      {
+        id: 'g3b', name: '生活法律', icon: 'fa-file-signature', children: [], links: []
+      }
     ], links: []
   },
   {
-    id: 'g4', name: '生活', icon: 'fa-house', children: [
-      { id: 'g4a', name: '阅读', icon: 'fa-book-open', children: [], links: [
-        { name: '微信读书', url: 'weread.qq.com' }
-      ]},
-      { id: 'g4b', name: '摄影', icon: 'fa-camera', children: [], links: [
-        { name: '500px', url: '500px.com' }
-      ]},
-      { id: 'g4c', name: '美食', icon: 'fa-utensils', children: [], links: [
-        { name: '下厨房', url: 'xiachufang.com' }
-      ]}
+    id: 'g4', name: '生活', icon: 'fa-coffee', children: [
+      {
+        id: 'g4a', name: '阅读', icon: 'fa-book-open', children: [], links: [
+          { name: '微信读书', url: 'weread.qq.com', note: '' }
+        ]
+      },
+      {
+        id: 'g4b', name: '摄影', icon: 'fa-camera', children: [], links: []
+      },
+      {
+        id: 'g4c', name: '美食', icon: 'fa-utensils', children: [], links: []
+      }
     ], links: []
   }
 ];
@@ -1233,7 +1238,7 @@ const DEFAULT_TREE = [
 // ============================================================
 let treeData = [];
 let favorites = [];
-let config = { theme: 'light', openMode: 'blank', greeting: '你好，小不溜', motto: '每天进步一点点，坚持就是胜利。' };
+let config = { theme: 'light', openMode: 'blank', greeting: '你好，小不溜', motto: '它山之石，可以攻玉。' };
 let selectedCatId = null;
 let linkModalMode = null; // 'add' | { catId, idx }
 let moveTargetId = null;
