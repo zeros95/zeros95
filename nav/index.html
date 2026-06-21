@@ -821,7 +821,7 @@ body.browse-mode #sidebar { width: 220px; }
 <!-- 走马灯提醒（首页显示） -->
 <div id="marqueeReminder" style="position:fixed;top:52px;left:0;right:0;height:32px;background:var(--bg-secondary);border-bottom:1px solid var(--border-color);overflow:hidden;z-index:90;">
   <div id="marqueeContent" class="marquee-static" style="display:inline-block;width:100%;color:var(--text-secondary);font-size:13px;line-height:32px;text-align:center;">
-    <i class="fas fa-quote-left" style="color:var(--accent);margin-right:6px"></i>每天进步一点点，坚持就是胜利。
+    <i class="fas fa-quote-left" style="color:var(--accent);margin-right:6px"></i>它山之石，可以攻玉。
   </div>
 </div>
 
@@ -1456,7 +1456,7 @@ function loadData() {
   }
   treeData = t ? JSON.parse(t) : JSON.parse(JSON.stringify(DEFAULT_TREE));
   favorites = f ? JSON.parse(f) : [];
-  config = c ? JSON.parse(c) : { theme: 'light', openMode: 'blank', greeting: '你好，小不溜', motto: '每天进步一点点，坚持就是胜利。' };
+  config = c ? JSON.parse(c) : { theme: 'light', openMode: 'blank', greeting: '你好，小不溜', motto: '它山之石，可以攻玉。' };
 }
 
 // ============================================================
@@ -2741,7 +2741,7 @@ function confirmMove() {
 // ============================================================
 function openSettings() {
   document.getElementById('greetingInput').value = config.greeting || '';
-  document.getElementById('mottoInput').value = config.motto || '每天进步一点点，坚持就是胜利。';
+  document.getElementById('mottoInput').value = config.motto || '它山之石，可以攻玉。';
   document.getElementById('openModeSelect').value = config.openMode;
   document.querySelectorAll('.theme-btn').forEach(b => {
     const isActive = b.dataset.theme === config.theme;
@@ -2753,7 +2753,7 @@ function openSettings() {
 
 function closeSettings() {
   config.greeting = document.getElementById('greetingInput').value.trim() || '你好，小不溜';
-  config.motto = document.getElementById('mottoInput').value.trim() || '每天进步一点点，坚持就是胜利。';
+  config.motto = document.getElementById('mottoInput').value.trim() || '它山之石，可以攻玉。';
   saveData();
   renderGreeting();
   showMotto();
@@ -3027,7 +3027,7 @@ let showingReminder = false;
 function showMotto() {
   showingReminder = false;
   const el = document.getElementById('marqueeContent');
-  const text = config.motto || '每天进步一点点，坚持就是胜利。';
+  const text = config.motto || '它山之石，可以攻玉。';
   el.innerHTML = `<i class="fas fa-quote-left" style="color:var(--accent);margin-right:6px"></i>${escapeHtml(text)}`;
   el.classList.remove('marquee-scroll');
   el.classList.add('marquee-static');
