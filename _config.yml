@@ -23,7 +23,6 @@ header_pages:
   - archive.md
   - categories.md
   - tags.md
-  - nav.md
 
 # ====== 构建配置 ======
 exclude:
