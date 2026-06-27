@@ -1,7 +1,8 @@
 # ====== 网站基础信息 ======
 title: 我的个人博客
 description: 记录生活，分享思考
-url: "https://morningligt.github.io"
+url: "https://zeros95.github.io"
+# url: "https://morningligt.github.io"
 
 # ====== 主题设置 ======
 theme: minima
