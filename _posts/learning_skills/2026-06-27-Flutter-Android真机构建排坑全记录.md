@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Flutter 3.44.x 构建 crash 排坑全记录：从 exit code 268435659 到成功跑通
-date: 2026-06-28 17:30:00
+date: 2026-06-27 17:30:00
 categories: 技术笔记
-tags: [Flutter, Android, Dart, 踩坑实录, 构建工具]
+tags: [Flutter, Android, Android Studio,Dart, app开发, 构建工具]
 ---
 
 > 开发 MyMoney 记账 App，Chrome 上跑得好好的，一到真机构建就炸了。花了整整一个下午，从 Flutter SDK 版本、Gradle、AGP、Java 兼容性一路排查下来，踩了 9 个坑。这篇文章把整个排坑过程完整还原，方便以后遇到同类问题少走弯路。
