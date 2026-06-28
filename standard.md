@@ -39,6 +39,12 @@
 - 数据分析
 - 阅读书单
 - AI
+- Flutter
+- Android
+- Android Studio
+- Dart
+- app开发
+- 构建工具
 
 
 ---
